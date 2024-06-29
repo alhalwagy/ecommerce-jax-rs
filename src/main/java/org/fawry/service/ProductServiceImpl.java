@@ -2,6 +2,7 @@ package org.fawry.service;
 
 import jakarta.ejb.Singleton;
 import jakarta.inject.Inject;
+import org.fawry.excptions.CustomExceptions.NotAuthorizedException;
 import org.fawry.excptions.CustomExceptions.ResourceNotFoundException;
 import org.fawry.model.Product;
 import org.fawry.repoistory.ProductRepository;
@@ -19,7 +20,7 @@ public class ProductServiceImpl implements ProductService {
   }
 
   @Override
-  public Product getProductById(int id) {
+  public Product getProductById(int id)  {
     if (id <= 0 || id > productRepository.getProductListSize()) {
       throw new ResourceNotFoundException("Product with id " + id + " not found.");
     }
