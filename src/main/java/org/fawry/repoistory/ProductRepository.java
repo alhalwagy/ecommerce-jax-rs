@@ -16,4 +16,8 @@ public interface ProductRepository {
 
     int getProductListSize();
 
+    void deleteProduct(int id);
+
+    Product findProductByName(String name);
+
 }

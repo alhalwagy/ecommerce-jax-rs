@@ -6,7 +6,7 @@ public class ResponseErrorModel {
 
     private int status;
     private String message;
-    private Timestamp occuredAt;
+    private Timestamp occurredAt;
 
     public ResponseErrorModel() {
     }
@@ -14,7 +14,7 @@ public class ResponseErrorModel {
     public ResponseErrorModel(int status, String message, Timestamp occuredAt) {
         this.status = status;
         this.message = message;
-        this.occuredAt = occuredAt;
+        this.occurredAt = occuredAt;
     }
 
     public int getStatus() {
@@ -33,11 +33,20 @@ public class ResponseErrorModel {
         this.message = message;
     }
 
-    public Timestamp getOccuredAt() {
-        return occuredAt;
+    public Timestamp getOccurredAt() {
+        return occurredAt;
     }
 
-    public void setOccuredAt(Timestamp occuredAt) {
-        this.occuredAt = occuredAt;
+    public void setOccurredAt(Timestamp occurredAt) {
+        this.occurredAt = occurredAt;
+    }
+
+    @Override
+    public String toString() {
+        return "ResponseErrorModel{" +
+                "status=" + status +
+                ", message='" + message + '\'' +
+                ", occurredAt=" + occurredAt +
+                '}';
     }
 }

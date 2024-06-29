@@ -5,6 +5,7 @@ import org.fawry.excptions.CustomExceptions.ResourceNotFoundException;
 import org.fawry.model.Product;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 @Singleton
@@ -27,7 +28,7 @@ public class ProductRepositoryImpl implements ProductRepository {
 
   @Override
   public void add(Product product) {
-    int id = products.size()+1;
+    int id = products.size() + 1;
     product.setId(id);
     products.add(product);
     System.out.println("product added: " + product);
@@ -44,12 +45,25 @@ public class ProductRepositoryImpl implements ProductRepository {
     oldProduct.setQuantity(product.getQuantity());
 
     return oldProduct;
-
   }
 
-  public int getProductListSize(){
+  @Override
+  public int getProductListSize() {
     return products.size();
   }
 
+  @Override
+  public void deleteProduct(int id) {
 
+    products.removeIf(element -> element.getId() == id);
+  }
+
+  @Override
+  public Product findProductByName(String name) {
+    return products.stream()
+        .filter(product -> product.getName().equals( name))
+        .findFirst()
+        .orElseThrow(
+            () -> new ResourceNotFoundException("Product with name " + name + " not found"));
+  }
 }

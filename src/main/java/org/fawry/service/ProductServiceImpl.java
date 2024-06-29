@@ -20,8 +20,8 @@ public class ProductServiceImpl implements ProductService {
 
   @Override
   public Product getProductById(int id) {
-    if(id<=0 || id>productRepository.getProductListSize()) {
-      throw  new ResourceNotFoundException("Product with id "+id+" not found.");
+    if (id <= 0 || id > productRepository.getProductListSize()) {
+      throw new ResourceNotFoundException("Product with id " + id + " not found.");
     }
     return productRepository.findProductById(id);
   }
@@ -36,4 +36,14 @@ public class ProductServiceImpl implements ProductService {
     return productRepository.update(id, product);
   }
 
+  @Override
+  public void deleteProduct(int id) {
+
+    productRepository.deleteProduct(id);
+  }
+
+  @Override
+  public Product getProductByName(String name) {
+    return productRepository.findProductByName(name);
+  }
 }
